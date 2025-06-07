@@ -1,11 +1,4 @@
 import struct
-from PTPInitFail import PtpIpInitFail
-from PTPInitEvent import PtpIpEventReq
-from PTPInitCommand import PtpIpInitCmdReq
-from PTPInitEventACK import PtpIpEventAck
-from PTPInitCommandACK import PtpIpInitCmdAck
-from PTPCommandReq import PtpIpCmdRequest
-from PTPCommandRES import PtpIpCmdResponse
 
 class PtpIpPacket(object):
     """docstring for PtpIpCmd"""
@@ -29,6 +22,16 @@ class PtpIpPacket(object):
         else:
             print("Cmd Type: " + str(struct.unpack('I', data[0:4])[0]))
             self.cmdtype = struct.unpack('I', data[0:4])[0]
+            
+        # Import here to avoid circular dependencies
+        from .PTPInitFail import PtpIpInitFail
+        from .PTPInitEvent import PtpIpEventReq
+        from .PTPInitCommand import PtpIpInitCmdReq
+        from .PTPInitEventACK import PtpIpEventAck
+        from .PTPInitCommandACK import PtpIpInitCmdAck
+        from .PTPCommandReq import PtpIpCmdRequest
+        from .PTPCommandRES import PtpIpCmdResponse
+            
         if self.cmdtype == 1:
             return PtpIpInitCmdReq(data[4:])
         elif self.cmdtype == 2:

@@ -1,4 +1,4 @@
-from PTPPacket import PtpIpPacket
+from .PTPPacket import PtpIpPacket
 import struct
 
 class PtpIpInitCmdAck(PtpIpPacket):

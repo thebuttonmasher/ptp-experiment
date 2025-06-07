@@ -3,7 +3,7 @@ from PTPSession import *
 ptpip = PTPIPSession()
 ptpip.open(host='192.168.1.2', port=15740)
 while 1:
-    cmd_to_send = int(input("input cmd"))
+    cmd_to_send = int(input("input cmd"), 16)
     param = input("and param")
     if param:
         param = int(param)

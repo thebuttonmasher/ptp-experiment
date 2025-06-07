@@ -21,7 +21,7 @@ class PtpIpCmdRequest(PtpIpPacket):
         if self.param1 is not None and type(self.param1) is int:
             self.args = self.args + struct.pack('L', self.param1)
 
-        if self.param2 is not None:
+        if self.param2 is not None and type(self.param2) is int:
             self.args = self.args + struct.pack('L', self.param2)
 
         if self.param3 is not None:

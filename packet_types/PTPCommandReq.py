@@ -6,10 +6,10 @@ class PtpIpCmdRequest(PtpIpPacket):
 
     """
     def __init__(self, data=None, cmd=None, param1=None, param2=None, param3=None, param4=None,
-                param5=None, tid=0):
+                param5=None, tid=0, data_phase=0x01):
         super(PtpIpCmdRequest, self).__init__()
         self.cmdtype = struct.pack('I', 0x06)
-        self.unkown = struct.pack('I', 0x01)
+        self.data_phase = struct.pack('I', data_phase)
         self.ptp_cmd = cmd
         self.param1 = param1
         self.param2 = param2
@@ -34,5 +34,5 @@ class PtpIpCmdRequest(PtpIpPacket):
             self.args = self.args + struct.pack('L', self.param5)
 
     def data(self):
-        return self.cmdtype + self.unkown + struct.pack('H', self.ptp_cmd) + \
+        return self.cmdtype + self.data_phase + struct.pack('H', self.ptp_cmd) + \
             self.transaction_id + self.args

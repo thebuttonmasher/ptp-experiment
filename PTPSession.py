@@ -1,10 +1,18 @@
 import socket
+import struct
 from packet_types import *
 from packet_types.PTPPacket import *
+from packet_types.PTPInitCommand import *
+from packet_types.PTPInitEvent import *
+from packet_types.PTPInitCommandACK import *
+from packet_types.PTPInitEventACK import *
+from packet_types.PTPCommandReq import *
+from packet_types.PTPCommandRES import *
 
 def connect(host='192.168.1.2', port=15740):
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.setsockopt(socket.SOL_SOCKET, socket.SO_KEEPALIVE, 1)
+    s.bind(('192.168.1.3', 0))
     s.connect((host, port))
     return s
 

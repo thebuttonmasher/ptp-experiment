@@ -41,7 +41,6 @@ class PTPIPSession:
 
     def send_data(self, data, session):
         session.send(struct.pack('I', len(data) + 4) + data)
-        self.transaction_id += 1
 
     def recieve_data(self, session):
         data = session.recv(4)
@@ -53,6 +52,7 @@ class PTPIPSession:
 
     def send_recieve_ptpip_packet(self, ptpip_packet, session):
         if isinstance(ptpip_packet, PtpIpInitCmdReq):
+            self.transaction_id += 1
             self.send_data(ptpip_packet.data(), session)
 
             # set the session id of the object if the reply is of type PtpIpInitCmdAck

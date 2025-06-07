@@ -24,3 +24,4 @@ cmds = [ptip_cmd1, ptip_cmd2, ptip_cmd3, ptip_cmd4, ptip_cmd5, ptip_cmd6, ptip_c
 for cmd in cmds:
     input("press enter to send next command...")
     ptpip.send_recieve_ptpip_packet(cmd, ptpip.session)
+input("press enter to close session")

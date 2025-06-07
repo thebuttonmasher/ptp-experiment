@@ -34,7 +34,8 @@ class PTPIPSession:
         self.session_events = connect(host=host, port=port)
         self.send_recieve_ptpip_packet(PtpIpEventReq(), self.session_events)
 
-        ptip_cmd = PtpIpCmdRequest(cmd=0x1002, param1=struct.unpack('L', self.session_id)[0])
+        print(f"session id: {self.session_id}")
+        ptip_cmd = PtpIpCmdRequest(cmd=0x1002, param1=int(self.session_id))
         self.send_recieve_ptpip_packet(ptip_cmd, self.session)
 
     def send_data(self, data, session):

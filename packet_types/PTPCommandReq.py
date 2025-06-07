@@ -18,7 +18,7 @@ class PtpIpCmdRequest(PtpIpPacket):
         self.param5 = param5
         self.transaction_id = struct.pack('I', tid)
         self.args = b''
-        if self.param1 is not None:
+        if self.param1 is not None and type(self.param1) is int:
             self.args = self.args + struct.pack('L', self.param1)
 
         if self.param2 is not None:

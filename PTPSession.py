@@ -38,6 +38,7 @@ class PTPIPSession:
         ptip_cmd = PtpIpCmdRequest(cmd=0x1002, param1=int.from_bytes(self.session_id, "little"))
         self.send_recieve_ptpip_packet(ptip_cmd, self.session)
 
+
     def send_data(self, data, session):
         session.send(struct.pack('I', len(data) + 4) + data)
         self.transaction_id += 1
